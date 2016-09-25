@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset='utf-8'>
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <link href='https://fonts.googleapis.com/css?family=Chivo:900' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="stylesheets/github-dark.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="stylesheets/print.css" media="print">
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <title>Runkeeper-analysis by harshkn</title>
+  </head>
+
+  <body>
+    <div id="container">
+      <div class="inner">
+
+        <header>
+          <h1>Runkeeper-analysis</h1>
+          <h2></h2>
+        </header>
+
+        <section id="downloads" class="clearfix">
+          <a href="https://github.com/harshkn/Runkeeper-Analysis/zipball/master" id="download-zip" class="button"><span>Download .zip</span></a>
+          <a href="https://github.com/harshkn/Runkeeper-Analysis/tarball/master" id="download-tar-gz" class="button"><span>Download .tar.gz</span></a>
+          <a href="https://github.com/harshkn/Runkeeper-Analysis" id="view-on-github" class="button"><span>View on GitHub</span></a>
+        </section>
+
+        <hr>
+
+        <section id="main_content">
+          <h3>
+<a id="runkeeper-data-analysis" class="anchor" href="#runkeeper-data-analysis" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Runkeeper data Analysis</h3>
+
+<p>I took 4 years of my run keeper data and analysed it. The data was exported from my runkeeper profile.</p>
+
+<div class="highlight highlight-source-python"><pre><span class="pl-c">#reading for data in to a DataFrame</span>
+df <span class="pl-k">=</span> pd.read_csv(<span class="pl-s"><span class="pl-pds">'</span>cardioActivities.csv<span class="pl-pds">'</span></span>)
+</pre></div>
+
+<div class="highlight highlight-source-python"><pre><span class="pl-c">#Displaying the data frame</span>
+df.head()</pre></div>
+
+<div>
+<table border="1">
+  <thead>
+    <tr>
+      <th></th>
+      <th>Date</th>
+      <th>Type</th>
+      <th>Route Name</th>
+      <th>Distance (km)</th>
+      <th>Duration</th>
+      <th>Average Pace</th>
+      <th>Average Speed (km/h)</th>
+      <th>Calories Burned</th>
+      <th>Climb (m)</th>
+      <th>Average Heart Rate (bpm)</th>
+      <th>Notes</th>
+      <th>GPX File</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>2016-09-18 17:23:13</td>
+      <td>Running</td>
+      <td>NaN</td>
+      <td>8.13</td>
+      <td>1:20:47</td>
+      <td>9:56</td>
+      <td>6.04</td>
+      <td>526.000000</td>
+      <td>85.85</td>
+      <td>NaN</td>
+      <td>Slow and good run. Perfect weather.</td>
+      <td>2016-09-18-1723.gpx</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>2016-09-11 16:21:14</td>
+      <td>Walking</td>
+      <td>NaN</td>
+      <td>1.55</td>
+      <td>18:31</td>
+      <td>11:58</td>
+      <td>5.01</td>
+      <td>89.975704</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>Walking</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>2016-09-09 19:52:37</td>
+      <td>Walking</td>
+      <td>NaN</td>
+      <td>1.36</td>
+      <td>17:09</td>
+      <td>12:37</td>
+      <td>4.75</td>
+      <td>84.963795</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>Walking</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>2016-09-09 14:46:07</td>
+      <td>Walking</td>
+      <td>NaN</td>
+      <td>1.51</td>
+      <td>18:29</td>
+      <td>12:15</td>
+      <td>4.90</td>
+      <td>89.021055</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>Walking</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>2016-09-08 14:53:21</td>
+      <td>Walking</td>
+      <td>NaN</td>
+      <td>1.48</td>
+      <td>17:45</td>
+      <td>11:58</td>
+      <td>5.01</td>
+      <td>88.066405</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>Walking</td>
+      <td>NaN</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+<h4>
+<a id="some-aggregated-stats-about-running-and-walking" class="anchor" href="#some-aggregated-stats-about-running-and-walking" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Some aggregated stats about running and walking</h4>
+
+<pre><code>
+    Number of total activities  312
+    Total distance  754.53  km
+    Total Calories burned  52214  Cal
+    Average distance per activity  2.45  km
+    Average Calories burned per activity  167  Cal
+    --------------------------------------------------
+    Number of walking  activities  222
+    Total distance in walking  383.25  km
+    Average distance per walking activity  1.72635135135  km
+    Average Calories burned per walking activity  109  Cal
+    --------------------------------------------------
+    Number of running activities  90
+    Total distance in running  371.28  km
+    Average distance per running activity  4.12533333333  km
+    Average Calories burned per running activity  308  Cal
+    --------------------------------------------------
+</code></pre>
+
+<h5>
+<a id="monthly-walking-distance-and-calories-burned-for-4-years-looks-like-i-have-ran-more-often-during-this-year" class="anchor" href="#monthly-walking-distance-and-calories-burned-for-4-years-looks-like-i-have-ran-more-often-during-this-year" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Monthly walking distance and calories burned for 4 years. Looks like I have ran more often during this year.</h5>
+
+<p><img src="output_3_0.png" alt="png"></p>
+
+<h5>
+<a id="monthly-running-distances-and-calories-burned-for-4-years" class="anchor" href="#monthly-running-distances-and-calories-burned-for-4-years" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Monthly running distances and calories burned for 4 years.</h5>
+
+<p><img src="output_4_0.png" alt="png"></p>
+
+<h5>
+<a id="yearly-walking-distances-and-calories-burned-for-4-years" class="anchor" href="#yearly-walking-distances-and-calories-burned-for-4-years" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Yearly walking distances and calories burned for 4 years.</h5>
+
+<p><img src="output_5_0.png" alt="png"></p>
+
+<h5>
+<a id="yearly-running-distances-and-calories-burned-for-4-years" class="anchor" href="#yearly-running-distances-and-calories-burned-for-4-years" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Yearly running distances and calories burned for 4 years.</h5>
+
+<p><img src="output_6_0.png" alt="png"></p>
+
+<h5>
+<a id="average-speed-per-activity-during-this-year2016-average-speed-per-activity-is-calculated-by-dividing-the-total-distance-in-each-activity-by-the-duration-it-took-to-complete-the-activity" class="anchor" href="#average-speed-per-activity-during-this-year2016-average-speed-per-activity-is-calculated-by-dividing-the-total-distance-in-each-activity-by-the-duration-it-took-to-complete-the-activity" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Average speed per activity during this year(2016). Average speed per activity is calculated by dividing the total distance in each activity by the duration it took to complete the activity.</h5>
+
+<p><img src="output_7_0.png" alt="png"></p>
+
+<h5>
+<a id="average-pace-per-activity-during-this-year2016-average-pace-is-average-number-of-minutes-takes-to-complete-each-kilometer-in-an-activity" class="anchor" href="#average-pace-per-activity-during-this-year2016-average-pace-is-average-number-of-minutes-takes-to-complete-each-kilometer-in-an-activity" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Average pace per activity during this year(2016). Average pace is average number of minutes takes to complete each kilometer in an activity</h5>
+
+<p><img src="output_8_0.png" alt="png"></p>
+
+<h5>
+<a id="correlation-between-distance-and-duration-for-all-walking-activities-it-can-be-seen-that-there-is-high-correlation-as-it-is-very-likely-that-longer-i-walk-more-distance-i-cover" class="anchor" href="#correlation-between-distance-and-duration-for-all-walking-activities-it-can-be-seen-that-there-is-high-correlation-as-it-is-very-likely-that-longer-i-walk-more-distance-i-cover" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Correlation between distance and duration for all walking activities. It can be seen that there is high correlation as it is very likely that longer I walk, more distance I cover.</h5>
+
+<p><img src="output_9_0.png" alt="png"></p>
+
+<h5>
+<a id="correlation-between-distance-and-duration-for-all-running-activities-we-can-see-good-correlation-but-not-as-strongly-like-in-walking-it-is-because-longer-i-run-more-difficult-it-might-become-to-maintain-the-speed-and-hence-the-distance" class="anchor" href="#correlation-between-distance-and-duration-for-all-running-activities-we-can-see-good-correlation-but-not-as-strongly-like-in-walking-it-is-because-longer-i-run-more-difficult-it-might-become-to-maintain-the-speed-and-hence-the-distance" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Correlation between distance and duration for all running activities. We can see good correlation but not as strongly like in walking. It is because longer I run, more difficult it might become to maintain the speed and hence the distance.</h5>
+
+<p><img src="output_11_0.png" alt="png"></p>
+        </section>
+
+        <footer>
+          Runkeeper-analysis is maintained by <a href="https://github.com/harshkn">harshkn</a><br>
+          This page was generated by <a href="https://pages.github.com">GitHub Pages</a>. Tactile theme by <a href="https://twitter.com/jasonlong">Jason Long</a>.
+        </footer>
+
+        
+      </div>
+    </div>
+  </body>
+</html>
