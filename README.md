@@ -164,7 +164,6 @@ df.head()
 ![png](output_7_0.png)
 
 
-
 #####Average pace per activity during this year(2016). Average pace is average number of minutes takes to complete each kilometer in an activity
 
 
@@ -172,120 +171,9 @@ df.head()
 
 
 
-
 #####Correlation between distance and duration for all walking activities. It can be seen that there is high correlation as it is very likely that longer I walk, more distance I cover.
 
 ![png](output_9_0.png)
-
-
-
-```python
-walk_data.head()
-```
-
-
-
-
-<div>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>Date</th>
-      <th>Type</th>
-      <th>Route Name</th>
-      <th>Distance (km)</th>
-      <th>Duration</th>
-      <th>Average Pace</th>
-      <th>Average Speed (km/h)</th>
-      <th>Calories Burned</th>
-      <th>Climb (m)</th>
-      <th>Average Heart Rate (bpm)</th>
-      <th>Notes</th>
-      <th>GPX File</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>1</th>
-      <td>2016-09-11 16:21:14</td>
-      <td>Walking</td>
-      <td>NaN</td>
-      <td>1.55</td>
-      <td>18:31</td>
-      <td>11:58</td>
-      <td>5.01</td>
-      <td>89.975704</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>Walking</td>
-      <td>NaN</td>
-    </tr>
-    <tr>
-      <th>2</th>
-      <td>2016-09-09 19:52:37</td>
-      <td>Walking</td>
-      <td>NaN</td>
-      <td>1.36</td>
-      <td>17:09</td>
-      <td>12:37</td>
-      <td>4.75</td>
-      <td>84.963795</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>Walking</td>
-      <td>NaN</td>
-    </tr>
-    <tr>
-      <th>3</th>
-      <td>2016-09-09 14:46:07</td>
-      <td>Walking</td>
-      <td>NaN</td>
-      <td>1.51</td>
-      <td>18:29</td>
-      <td>12:15</td>
-      <td>4.90</td>
-      <td>89.021055</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>Walking</td>
-      <td>NaN</td>
-    </tr>
-    <tr>
-      <th>4</th>
-      <td>2016-09-08 14:53:21</td>
-      <td>Walking</td>
-      <td>NaN</td>
-      <td>1.48</td>
-      <td>17:45</td>
-      <td>11:58</td>
-      <td>5.01</td>
-      <td>88.066405</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>Walking</td>
-      <td>NaN</td>
-    </tr>
-    <tr>
-      <th>5</th>
-      <td>2016-09-08 14:12:51</td>
-      <td>Walking</td>
-      <td>NaN</td>
-      <td>1.41</td>
-      <td>17:08</td>
-      <td>12:08</td>
-      <td>4.94</td>
-      <td>68.973418</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>Walking</td>
-      <td>NaN</td>
-    </tr>
-  </tbody>
-</table>
-</div>
-
-
 
 
 #####Correlation between distance and duration for all running activities. We can see good correlation but not as strongly like in walking. It is because longer I run, more difficult it might become to maintain the speed and hence the distance. 
